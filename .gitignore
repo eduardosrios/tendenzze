@@ -1,0 +1,26 @@
+# Local agent instructions and private prompt notes
+AGENTS.md
+IGNORE.MD
+*.txt
+*.md
+*.MD
+!README.md
+!CODE_OF_CONDUCT.md
+!CONTRIBUTING.md
+!CONTRIBUTORS.md
+!SECURITY.md
+dev-instructions/
+
+# Local/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary output
+tmp/
+temp/
+*.log
+
+# Local Node tooling
+node_modules/
