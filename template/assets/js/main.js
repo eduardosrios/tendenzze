@@ -135,4 +135,25 @@
     $button.find('i').toggleClass('fa-plus', !added).toggleClass('fa-check', added);
     $('.body-section-24__status').text(product + (added ? ' added to bag.' : ' removed from bag.'));
   });
+  $('.body-section-27__bag').on('click', function () {
+    var $button = $(this);
+    var added = !$button.hasClass('is-added');
+    var product = $button.data('product');
+    $button.toggleClass('is-added', added).attr('aria-pressed', added ? 'true' : 'false').attr('aria-label', (added ? 'Remove ' : 'Add ') + product);
+    $button.find('i').toggleClass('fa-bag-shopping', !added).toggleClass('fa-check', added);
+    $('.body-section-27__status').text(product + (added ? ' added to bag.' : ' removed from bag.'));
+  });
+  $('.body-section-30__more').on('click', function () {
+    var $button = $(this);
+    var expanded = !$button.hasClass('is-active');
+    $button.toggleClass('is-active', expanded).attr('aria-expanded', expanded ? 'true' : 'false').text(expanded ? 'Show less' : 'Show more');
+    $('.body-section-30__status').text(expanded ? 'The complete seasonal assortment is available.' : 'The seasonal assortment is condensed.');
+  });
+  $('.body-section-32__product button').on('click', function () {
+    var $button = $(this);
+    var saved = !$button.hasClass('is-saved');
+    var product = $button.data('product');
+    $button.toggleClass('is-saved', saved).attr('aria-pressed', saved ? 'true' : 'false').attr('aria-label', (saved ? 'Remove ' : 'Save ') + product);
+    $('.body-section-32__status').text(product + (saved ? ' saved.' : ' removed from saved items.'));
+  });
 })(jQuery);
