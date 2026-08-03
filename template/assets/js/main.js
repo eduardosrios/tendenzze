@@ -95,4 +95,44 @@
 
   $('.body-section-12__phone--checkout form button').on('click', function () {
     $('.body-section-12__status').text('Checkout details confirmed.');
-  });})(jQuery);
+  });
+  $('.body-section-18__add').on('click', function () {
+    var $button = $(this);
+    var added = !$button.hasClass('is-added');
+    $button.toggleClass('is-added', added).attr('aria-pressed', added ? 'true' : 'false').text(added ? 'Added' : 'Add to cart');
+    $('.body-section-18__status').text(added ? 'Skinny Double-Wrap Belt added to cart.' : 'Skinny Double-Wrap Belt removed from cart.');
+  });
+  $('.body-section-19__play').on('click', function () {
+    var $button = $(this);
+    var playing = !$button.hasClass('is-playing');
+    $button.toggleClass('is-playing', playing).attr('aria-pressed', playing ? 'true' : 'false').attr('aria-label', playing ? 'Pause campaign film' : 'Play campaign film');
+    $button.find('i').toggleClass('fa-play', !playing).toggleClass('fa-pause', playing);
+    $('.body-section-19__status').text(playing ? 'Campaign film playing.' : 'Campaign film paused.');
+  });
+  $('.body-section-20__favorite').on('click', function () {
+    var $button = $(this);
+    var selected = !$button.hasClass('is-selected');
+    var product = $button.data('product');
+    $button.toggleClass('is-selected', selected).attr('aria-pressed', selected ? 'true' : 'false').attr('aria-label', (selected ? 'Remove ' : 'Save ') + product);
+    $button.find('i').toggleClass('fa-regular', !selected).toggleClass('fa-solid', selected);
+    $('.body-section-20__status').text(product + (selected ? ' saved.' : ' removed from saved items.'));
+  });
+  (function () {
+    var editorialSlides = ['hero-editorial.jpg', 'catalogue-model.jpg', 'catalogue-bag.jpg'];
+    var editorialIndex = 0;
+    $('.body-section-21__mobile header button').on('click', function () {
+      editorialIndex = (editorialIndex + ($(this).data('direction') === 'next' ? 1 : -1) + editorialSlides.length) % editorialSlides.length;
+      $('.body-section-21__mobile header span').text(String(editorialIndex + 1).padStart(2, '0') + '/');
+      $('.body-section-21__mobile-body>img').attr('src', 'assets/images/' + editorialSlides[editorialIndex]).attr('alt', 'Tendenzze editorial slide ' + (editorialIndex + 1));
+      $('.body-section-21__status').text('Editorial slide ' + (editorialIndex + 1) + ' selected.');
+    });
+  })();
+  $('.body-section-24__product button').on('click', function () {
+    var $button = $(this);
+    var added = !$button.hasClass('is-added');
+    var product = $button.data('product');
+    $button.toggleClass('is-added', added).attr('aria-pressed', added ? 'true' : 'false').attr('aria-label', (added ? 'Remove ' : 'Add ') + product);
+    $button.find('i').toggleClass('fa-plus', !added).toggleClass('fa-check', added);
+    $('.body-section-24__status').text(product + (added ? ' added to bag.' : ' removed from bag.'));
+  });
+})(jQuery);
