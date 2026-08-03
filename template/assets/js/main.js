@@ -232,4 +232,125 @@
     $button.attr('aria-expanded', expanded ? 'false' : 'true').text(expanded ? 'show more' : 'show less');
     $('.body-section-48__status').text(expanded ? 'Original silk edit restored.' : 'More silk styles displayed.');
   });
-})(jQuery);
+  $('.body-section-49__filters button').on('click', function () {
+    var $button = $(this);
+    $button.addClass('is-active').attr('aria-pressed', 'true').siblings().removeClass('is-active').attr('aria-pressed', 'false');
+    $('.body-section-49__status').text($button.text() + ' collection selected.');
+  });
+
+  $('.body-section-49__actions button').on('click', function () {
+    var $button = $(this);
+    var added = $button.attr('aria-pressed') !== 'true';
+    $button.attr('aria-pressed', added ? 'true' : 'false').text(added ? 'Added' : 'Add to Cart');
+    $('.body-section-49__status').text(added ? 'London Skyline Hoodie added to cart.' : 'London Skyline Hoodie removed from cart.');
+  });  $('.body-section-50__film button').on('click', function () {
+    var $button = $(this);
+    var playing = $button.attr('aria-pressed') !== 'true';
+    $button.attr('aria-pressed', playing ? 'true' : 'false').attr('aria-label', playing ? 'Pause technical motion film' : 'Play technical motion film');
+    $button.find('i').toggleClass('fa-play', !playing).toggleClass('fa-pause', playing);
+    $('.body-section-50__status').text(playing ? 'Technical motion film playing.' : 'Technical motion film paused.');
+  });  $('.body-section-52__swatches button').on('click', function () {
+    var $button = $(this);
+    var $article = $button.closest('article');
+    $button.addClass('is-selected').attr('aria-pressed', 'true').siblings().removeClass('is-selected').attr('aria-pressed', 'false');
+    $('.body-section-52__status').text($button.data('color') + ' selected for ' + $article.find('h3').text() + '.');
+  });  var summerTestimonials = [
+    { title: 'Perfect Quality and Customer Service!', quote: 'Absolutely love the quality of the clothing at Tendenzze! Every piece feels premium, and the designs are just what I was looking for to elevate my wardrobe. The customer service is excellent too—quick responses, helpful advice, and they made the shopping experience smooth and easy. My new go-to for all things fashion, whether it’s everyday wear or something special!', name: 'Paul Eden', location: 'From California' },
+    { title: 'Effortless Style for Every Day!', quote: 'Beautiful fabrics, thoughtful cuts, and pieces that work together with ease. Delivery was quick, every detail felt considered, and the fit guidance was exactly right.', name: 'Amina Lee', location: 'From New York' },
+    { title: 'A Summer Wardrobe I Love!', quote: 'The collection feels light, polished, and easy to wear. Each piece arrived beautifully finished, and the team made choosing the right sizes simple.', name: 'Sofia Martin', location: 'From London' }
+  ];
+
+  $('.body-section-53__dots button').on('click', function () {
+    var $button = $(this);
+    var review = summerTestimonials[Number($button.data('review'))];
+    $button.addClass('is-active').attr('aria-pressed', 'true').siblings().removeClass('is-active').attr('aria-pressed', 'false');
+    $('.body-section-53__testimonial h3').text(review.title);
+    $('.body-section-53__testimonial blockquote').text(review.quote);
+    $('.body-section-53__name').text(review.name);
+    $('.body-section-53__location').text(review.location);
+    $('.body-section-53__avatar').attr('alt', review.name);
+    $('.body-section-53__status').text(review.name + ' testimonial selected.');
+  });
+  var $valerie = $('.body-section-54__story--road');
+  if ($valerie.length) {
+    var $valerieStatus = $('.body-section-54__status');
+    var $valerieProgress = $('.body-section-54__media input[type="range"]');
+    $('.body-section-54__pause').on('click', function () {
+      var paused = $(this).attr('aria-pressed') !== 'true';
+      $(this).attr('aria-pressed', String(paused)).attr('aria-label', paused ? 'Play Valérie film' : 'Pause Valérie film').find('i').attr('class', paused ? 'fa-solid fa-play' : 'fa-solid fa-pause');
+      $valerie.toggleClass('is-paused', paused);
+      $valerieStatus.text(paused ? 'Valérie film paused.' : 'Valérie film playing.');
+    });
+    $('.body-section-54__skip').on('click', function () {
+      $valerieProgress.val(Math.min(100, Number($valerieProgress.val()) + 15)).trigger('input');
+      $valerieStatus.text('Valérie film advanced.');
+    });
+    $('.body-section-54__mute').on('click', function () {
+      var muted = $(this).attr('aria-pressed') !== 'true';
+      $(this).attr('aria-pressed', String(muted)).attr('aria-label', muted ? 'Unmute film' : 'Mute film').find('i').attr('class', muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-low');
+      $valerieStatus.text(muted ? 'Valérie film muted.' : 'Valérie film unmuted.');
+    });
+    $('.body-section-54__expand').on('click', function () {
+      var active = $(this).attr('aria-pressed') !== 'true';
+      $(this).attr('aria-pressed', String(active));
+      if (active && $valerie.get(0).requestFullscreen) {
+        $valerie.get(0).requestFullscreen().catch(function () { $(this).attr('aria-pressed', 'false'); }.bind(this));
+      } else if (!active && document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    });
+    $(document).on('fullscreenchange', function () {
+      $('.body-section-54__expand').attr('aria-pressed', String(document.fullscreenElement === $valerie.get(0)));
+    });
+  }
+
+  var $section56 = $('.body-section-56');
+  if ($section56.length) {
+    var $section56Status = $('.body-section-56__status');
+    $('.body-section-56__quick').on('click', function () {
+      var product = $(this).closest('article').data('product');
+      $section56Status.text('Quick view opened for ' + product + '.');
+    });
+    $('.body-section-56__add').on('click', function () {
+      var added = $(this).attr('aria-pressed') !== 'true';
+      var product = $(this).closest('article').data('product');
+      $(this).attr('aria-pressed', String(added)).text(added ? 'Added' : 'Add to bag');
+      $section56Status.text(product + (added ? ' added to bag.' : ' removed from bag.'));
+    });
+    var section56Reviews = $('.body-section-56__reviews blockquote').map(function () { return $(this).contents().first().text(); }).get();
+    var section56Offset = 0;
+    $('.body-section-56__previous, .body-section-56__next').on('click', function () {
+      section56Offset += $(this).hasClass('body-section-56__next') ? 1 : -1;
+      section56Offset = (section56Offset + section56Reviews.length) % section56Reviews.length;
+      $('.body-section-56__reviews blockquote').each(function (index) {
+        $(this).contents().first()[0].textContent = section56Reviews[(index + section56Offset) % section56Reviews.length];
+      });
+      $section56Status.text('Testimonials updated.');
+    });
+  }
+
+  $('.body-section-58__person button').on('click', function () {
+    $('.body-section-58__person button').attr('aria-pressed', 'false');
+    $(this).attr('aria-pressed', 'true');
+    $('.body-section-58__status').text($(this).attr('aria-label').replace('Select', 'Selected') + '.');
+  });
+
+  $('.body-section-60__questions button').on('click', function () {
+    var $button = $(this);
+    var $article = $button.closest('article');
+    var opening = $button.attr('aria-expanded') !== 'true';
+    $('.body-section-60__questions article').removeClass('is-open').find('button').attr('aria-expanded', 'false').find('i').text('+');
+    if (opening) {
+      $article.addClass('is-open');
+      $button.attr('aria-expanded', 'true').find('i').text('−');
+    }
+    $('.body-section-60__status').text(opening ? $button.find('span').text() + ' expanded.' : 'Question collapsed.');
+  });
+
+  $('.body-section-60__form').on('submit', function (event) {
+    event.preventDefault();
+    var $form = $(this);
+    var valid = this.checkValidity();
+    $form.toggleClass('is-valid', valid).toggleClass('is-invalid', !valid);
+    $('.body-section-60__status').text(valid ? 'Thank you for subscribing.' : 'Enter a valid email address.');
+  });})(jQuery);
