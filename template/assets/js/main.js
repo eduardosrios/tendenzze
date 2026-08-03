@@ -156,4 +156,80 @@
     $button.toggleClass('is-saved', saved).attr('aria-pressed', saved ? 'true' : 'false').attr('aria-label', (saved ? 'Remove ' : 'Save ') + product);
     $('.body-section-32__status').text(product + (saved ? ' saved.' : ' removed from saved items.'));
   });
+  $('.body-section-38__arrow').on('click', function () {
+    var $gallery = $('.body-section-38__gallery');
+    var $cards = $gallery.children('article');
+    if ($(this).data('direction') === 'next') {
+      $cards.first().appendTo($gallery);
+    } else {
+      $cards.last().prependTo($gallery);
+    }
+    $('.body-section-38__status').text('Dress categories reordered ' + $(this).data('direction') + '.');
+  });  $('.body-section-40__category button').on('click', function () {
+    var $button = $(this);
+    var $category = $button.closest('.body-section-40__category');
+    var opening = !$category.hasClass('is-open');
+    $category.siblings('.body-section-40__category').removeClass('is-open').find('button').attr('aria-expanded', 'false').find('i').removeClass('fa-minus').addClass('fa-plus');
+    $category.siblings('.body-section-40__category').children('div').attr('hidden', true);
+    $category.toggleClass('is-open', opening);
+    $button.attr('aria-expanded', opening ? 'true' : 'false').find('i').toggleClass('fa-minus', opening).toggleClass('fa-plus', !opening);
+    $category.children('div').attr('hidden', !opening);
+    $('.body-section-40__status').text($button.find('span').text() + (opening ? ' category expanded.' : ' category collapsed.'));
+  });  $('.body-section-42__products button').on('click', function () {
+    var $button = $(this);
+    var added = !$button.hasClass('is-added');
+    var product = $button.data('product') || 'Product';
+    $button.toggleClass('is-added', added).attr('aria-pressed', added ? 'true' : 'false').attr('aria-label', (added ? 'Remove ' : 'Add ') + product);
+    $button.find('i').toggleClass('fa-plus', !added).toggleClass('fa-check', added);
+    $('.body-section-42__status').text(product + (added ? ' added to bundle.' : ' removed from bundle.'));
+  });  $('.body-section-43__navigation button').on('click', function () {
+    var $products = $('.body-section-43__products');
+    var $cards = $products.children('article');
+    var direction = $(this).data('direction');
+    if (direction === 'next') {
+      $cards.first().appendTo($products);
+    } else {
+      $cards.last().prependTo($products);
+    }
+    $('.body-section-43__status').text('Featured products reordered ' + direction + '.');
+  });  $('.body-section-45__grid button').on('click', function () {
+    var $button = $(this);
+    var saved = !$button.hasClass('is-saved');
+    var product = $button.data('product');
+    $button.toggleClass('is-saved', saved).attr('aria-pressed', saved ? 'true' : 'false').attr('aria-label', (saved ? 'Remove ' : 'Save ') + product);
+    $button.find('i').toggleClass('fa-regular', !saved).toggleClass('fa-solid', saved);
+    $('.body-section-45__status').text(product + (saved ? ' saved.' : ' removed from saved items.'));
+  });
+  $('.body-section-45__mini-nav button').on('click', function () {
+    var $products = $('.body-section-45__mini-products');
+    var $cards = $products.children('article');
+    var direction = $(this).data('direction');
+    if (direction === 'next') {
+      $cards.first().appendTo($products);
+    } else {
+      $cards.last().prependTo($products);
+    }
+    $('.body-section-45__status').text('Mini products reordered ' + direction + '.');
+  });  $('.body-section-47__signup form').on('submit', function (event) {
+    event.preventDefault();
+    var $input = $(this).find('input[type="email"]');
+    var valid = $input[0].checkValidity();
+    $input.toggleClass('is-invalid', !valid).attr('aria-invalid', valid ? 'false' : 'true');
+    $('.body-section-47__status').text(valid ? 'Thank you for subscribing.' : 'Enter a valid email address.');
+  });
+
+  $('.body-section-48__more').on('click', function () {
+    var $button = $(this);
+    var $products = $('.body-section-48__products');
+    var expanded = $button.attr('aria-expanded') === 'true';
+
+    if (expanded) {
+      $products.children('article').last().prependTo($products);
+    } else {
+      $products.children('article').first().appendTo($products);
+    }
+
+    $button.attr('aria-expanded', expanded ? 'false' : 'true').text(expanded ? 'show more' : 'show less');
+    $('.body-section-48__status').text(expanded ? 'Original silk edit restored.' : 'More silk styles displayed.');
+  });
 })(jQuery);
