@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tendenzze — premium contemporary fashion catalogue.">
+  <title>Tendenzze — Catalogue 1.0</title>
+  <link rel="icon" type="image/jpeg" href="assets/images/hero-editorial.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/simplebar/simplebar.min.css">
+  <link rel="stylesheet" href="assets/css/main.css?v=5">
+</head>
+<body>
+  <main>
+    <section class="hero-section hero-section-1" id="catalogue-one" aria-labelledby="catalogue-title">
+      <img class="hero-section-1__portrait" src="assets/images/hero-editorial.jpg" alt="Male fashion model in a dark editorial portrait">
+      <div class="hero-section-1__shade" aria-hidden="true"></div>
+
+      <header class="hero-section-1__topbar">
+        <a class="hero-section-1__brand" href="#catalogue-one" aria-label="Tendenzze home">TENDENZZE<br>TENDENZZE</a>
+        <a class="hero-section-1__nav-link" href="#catalogue-panel">CATALOGUE</a>
+        <p class="hero-section-1__viewport">1920×960<br>DESKTOP</p>
+      </header>
+
+      <div class="hero-section-1__version" aria-label="Version one">
+        <img src="assets/images/hero-editorial.jpg" alt="" aria-hidden="true">
+        <span>Version one</span>
+      </div>
+
+      <div class="hero-section-1__heading-wrap">
+        <h1 id="catalogue-title">CATALOGUE 1.0</h1>
+        <span>concept</span>
+      </div>
+
+      <article class="catalogue-panel" id="catalogue-panel" aria-label="Tendenzze fashion catalogue">
+        <nav class="catalogue-panel__utility" aria-label="Catalogue utility navigation">
+          <a href="#hero-two-story">MENU<br>OUR STORY</a>
+          <button class="catalogue-panel__search" type="button" aria-expanded="false" aria-controls="catalogue-search">SEARCH</button>
+          <a href="#hero-two-products">BAG(3)<br>CONTACTS</a>
+        </nav>
+
+        <form class="catalogue-panel__search-form" id="catalogue-search" role="search" hidden>
+          <label class="visually-hidden" for="catalogue-search-input">Search the catalogue</label>
+          <input id="catalogue-search-input" type="search" placeholder="Search the catalogue" autocomplete="off">
+          <button type="submit">SEARCH</button>
+          <button class="catalogue-panel__search-close" type="button" aria-label="Close search"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </form>
+
+        <div class="catalogue-panel__wordmark" aria-label="Tendenzze">TENDENZZE TENDENZZE</div>
+
+        <div class="catalogue-panel__products">
+          <article class="catalogue-product catalogue-product--bag">
+            <h2>SAYLO BAG MINI</h2>
+            <img src="assets/images/catalogue-bag.jpg" alt="Ivory, black and oxblood mini handbag">
+            <p>Curved and tailored with hand-finished leather panels, the Saylo Mini balances a compact silhouette with generous structure. Designed for daily rituals, evening departures and years of considered wear.</p>
+          </article>
+
+          <img class="catalogue-panel__model" src="assets/images/catalogue-model.jpg" alt="Model wearing a taupe top and wide-leg trousers">
+
+          <article class="catalogue-product catalogue-product--trousers">
+            <h2>UMA TROUSERS</h2>
+            <p>Finely pleated tailoring with a relaxed waist and fluid wide leg. Precise internal construction creates considered movement, quiet confidence and an effortless line from day through evening.</p>
+          </article>
+        </div>
+
+        <p class="catalogue-panel__price">200.00 EUR&nbsp;&nbsp;120.00 EUR</p>
+
+        <div class="catalogue-panel__actions">
+          <button class="catalogue-panel__view" type="button" data-product="Saylo Bag Mini">VIEW THE ITEM</button>
+          <button class="catalogue-panel__view" type="button" data-product="Uma Trousers">VIEW THE ITEM</button>
+        </div>
+
+        <footer class="catalogue-panel__footer">
+          <a href="#catalogue-one">TENDENZZE<br>TENDENZZE</a>
+          <a href="#catalogue-panel">CATALOGUE</a>
+        </footer>
+        <p class="visually-hidden" id="catalogue-status" aria-live="polite"></p>
+      </article>
+    </section>
+
+    <section class="hero-section hero-section-2" id="hero-two" aria-labelledby="hero-two-title">
+      <header class="hero-section-2__header">
+        <a class="hero-section-2__brand" href="#hero-two">TENDENZZE</a>
+        <nav class="hero-section-2__nav" aria-label="Edition navigation">
+          <a href="#hero-two-story">Story</a>
+          <a href="#hero-two-products">Objects</a>
+          <a href="#hero-two-products">Edition 01</a>
+        </nav>
+        <a class="hero-section-2__bag" href="#hero-two-products">Bag <span>03</span></a>
+      </header>
+
+      <div class="hero-section-2__layout">
+        <div class="hero-section-2__copy" id="hero-two-story">
+          <p class="hero-section-2__eyebrow">Tendenzze / Edition 01</p>
+          <h2 id="hero-two-title">Future<br><em>classics.</em></h2>
+          <p class="hero-section-2__lead">A study in confident restraint. Tailoring, objects and silhouettes shaped for a slower, sharper wardrobe.</p>
+          <div class="hero-section-2__cta-row">
+            <a class="hero-section-2__primary" href="#hero-two-products">Explore the edition</a>
+            <a class="hero-section-2__secondary" href="#catalogue-one">View concept 01 <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+          </div>
+          <dl class="hero-section-2__facts">
+            <div><dt>Material study</dt><dd>Natural form / precise line</dd></div>
+            <div><dt>Release</dt><dd>Limited catalogue 01</dd></div>
+          </dl>
+        </div>
+
+        <figure class="hero-section-2__visual">
+          <img src="assets/images/hero-editorial.jpg" alt="Editorial portrait for Tendenzze Edition 01">
+          <figcaption><span>01</span> Portrait study — night tailoring</figcaption>
+        </figure>
+      </div>
+
+      <aside class="hero-section-2__product-strip" id="hero-two-products" aria-label="Featured edition products">
+        <div class="hero-section-2__strip-intro">
+          <p>Selected objects</p>
+          <strong>02 / 08</strong>
+        </div>
+        <article class="hero-section-2__product-card">
+          <img src="assets/images/catalogue-bag.jpg" alt="Saylo Mini handbag">
+          <div><p>Saylo Mini</p><span>Ivory / Oxblood</span></div>
+          <button type="button" aria-label="Select Saylo Mini"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </article>
+        <article class="hero-section-2__product-card hero-section-2__product-card--model">
+          <img src="assets/images/catalogue-model.jpg" alt="Uma tailoring look">
+          <div><p>Uma Tailoring</p><span>Stone / Edition 01</span></div>
+          <button type="button" aria-label="Select Uma Tailoring"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        </article>
+      </aside>
+      <p class="hero-section-2__status visually-hidden" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/simplebar/simplebar.min.js"></script>
+  <script src="assets/js/main.js?v=2"></script>
+</body>
+</html>

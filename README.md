@@ -1,13 +1,17 @@
 # Tendenzze
 
-Tendenzze is a fashion-focused web project for a modern clothing, apparel, and style brand presence. The repository is prepared for a static HTML, CSS, and JavaScript front page experience, with future implementation planned around fashion collections, lookbooks, apparel categories, wardrobe inspiration, and editorial brand storytelling.
+Tendenzze is a premium fashion front-page experience built with static HTML, CSS, and JavaScript. The current release introduces two responsive catalogue hero directions: a bold editorial concept and a refined commercial edition, both backed by local production assets and lightweight interactions.
 
 ## Project Scope
 
 - Brand: Tendenzze
 - Category: Fashion, clothing, apparel, style, wardrobe, outfits, boutique retail, designer fashion, luxury fashion, streetwear, sportswear, seasonal collections, and lookbooks
 - Stack: HTML, CSS, and JavaScript
-- Status: Repository foundation only. The website template has not been created yet.
+- Status: Active development — the responsive hero experience is available under `template/`.
+
+## Quick Start
+
+Open `template/index.html` in a modern browser or serve the `template/` directory with any static HTTP server. All runtime libraries and campaign imagery are stored locally; Google Fonts are the only external presentation dependency.
 
 ## Repository Resources
 
