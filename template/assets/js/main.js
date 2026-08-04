@@ -440,4 +440,9 @@
     $(this).attr('aria-pressed', 'true');
     $('.body-section-82__status').text('Ethos story ' + Number(number) + ' selected.');
   });
+  $('.body-section-86__products figure button').on('click', function () {
+    var saved = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(saved)).find('i').attr('class', saved ? 'fa-solid fa-heart' : 'fa-regular fa-heart');
+    $('.body-section-86__status').text($(this).attr('aria-label').replace('Save ', '') + (saved ? ' saved.' : ' removed from saved items.'));
+  });
 })(jQuery);
