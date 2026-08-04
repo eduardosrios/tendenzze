@@ -551,4 +551,11 @@
     $stones.children().removeClass('is-active').eq(2).addClass('is-active');
     $('.body-section-127__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' jewelry cut selected.');
   });
+  $('.footer-section-2__newsletter').on('submit', function (event) {
+    event.preventDefault();
+    var email = String($('#footer-2-email').val() || '').trim();
+    if (!email) { return; }
+    $(this).find('.footer-section-2__status').text('Thank you. You are on the Tendenzze list.');
+    this.reset();
+  });
 })(jQuery);
