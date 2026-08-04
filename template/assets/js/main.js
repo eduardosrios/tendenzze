@@ -558,4 +558,151 @@
     $(this).find('.footer-section-2__status').text('Thank you. You are on the Tendenzze list.');
     this.reset();
   });
+  function normalizeStageFourTypography() {
+    $('body *').each(function () {
+      if (this.matches('script, style, i, [aria-hidden="true"]')) { return; }
+      var hasDirectText = Array.prototype.some.call(this.childNodes, function (node) {
+        return node.nodeType === 3 && node.textContent.trim();
+      });
+      if (!hasDirectText) { return; }
+      var size = parseFloat(window.getComputedStyle(this).fontSize);
+      if (size < 16) {
+        this.classList.add('tendenzze-min-text');
+        return;
+      }
+      if (!this.matches('h1, h2, h3, h4, h5, h6') && size <= 60) {
+        var scale = size <= 18 ? 16 : size <= 22 ? 20 : size <= 28 ? 24 : size <= 40 ? 32 : 48;
+        this.classList.add('tendenzze-type-' + scale);
+      }
+    });
+  }
+
+  function normalizeStageFourPalette() {
+    function parseColor(value) {
+      var parts = String(value).match(/[0-9.]+/g);
+      if (!parts || parts.length < 3) { return null; }
+      return { r: Number(parts[0]), g: Number(parts[1]), b: Number(parts[2]), a: parts.length > 3 ? Number(parts[3]) : 1 };
+    }
+    function token(color, surface) {
+      if (!color || color.a === 0) { return null; }
+      var max = Math.max(color.r, color.g, color.b);
+      var min = Math.min(color.r, color.g, color.b);
+      var chroma = max - min;
+      var light = color.r * .2126 + color.g * .7152 + color.b * .0722;
+      if (chroma > 24) { return light < 48 ? 'navy' : 'accent'; }
+      if (surface) {
+        if (light < 58) { return 'ink'; }
+        if (light < 145) { return 'navy'; }
+        if (light < 238) { return 'muted'; }
+        return light > 252 ? 'white' : 'paper';
+      }
+      if (light < 62) { return 'ink'; }
+      if (light > 238) { return 'white'; }
+      return 'muted';
+    }
+    function luminance(color) {
+      var channels = [color.r, color.g, color.b].map(function (value) {
+        value /= 255;
+        return value <= .03928 ? value / 12.92 : Math.pow((value + .055) / 1.055, 2.4);
+      });
+      return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+    }
+    function effectiveBackground(element) {
+      while (element && element !== document.documentElement) {
+        var color = parseColor(window.getComputedStyle(element).backgroundColor);
+        if (color && color.a > .02) { return color; }
+        element = element.parentElement;
+      }
+      return { r: 255, g: 255, b: 255, a: 1 };
+    }
+    $('body *').each(function () {
+      if (this.matches('script, style, img, picture, video, source')) { return; }
+      var style = window.getComputedStyle(this);
+      var background = token(parseColor(style.backgroundColor), true);
+      var foreground = token(parseColor(style.color), false);
+      var border = style.borderTopStyle !== 'none' && parseFloat(style.borderTopWidth) > 0 ? token(parseColor(style.borderTopColor), false) : null;
+      if (background && style.backgroundImage === 'none') { this.classList.add('tz-bg-' + background); }
+      if (foreground) { this.classList.add('tz-text-' + foreground); }
+      if (border) { this.classList.add('tz-border-' + border); }
+    });
+    $('body *').each(function () {
+      if (this.matches('script, style, img, picture, video, source, i, [aria-hidden="true"]')) { return; }
+      var hasDirectText = Array.prototype.some.call(this.childNodes, function (node) {
+        return node.nodeType === 3 && node.nodeValue.trim().length > 0;
+      });
+      if (!hasDirectText) { return; }
+      var foreground = parseColor(window.getComputedStyle(this).color);
+      var background = effectiveBackground(this);
+      if (!foreground) { return; }
+      var foregroundLuminance = luminance(foreground);
+      var backgroundLuminance = luminance(background);
+      var contrast = (Math.max(foregroundLuminance, backgroundLuminance) + .05) / (Math.min(foregroundLuminance, backgroundLuminance) + .05);
+      if (contrast < 4.5) {
+        Array.prototype.slice.call(this.classList).filter(function (className) {
+          return className.indexOf('tz-text-') === 0;
+        }).forEach(function (className) {
+          this.classList.remove(className);
+        }, this);
+        this.classList.add(backgroundLuminance > .5 ? 'tz-text-ink' : 'tz-text-white');
+      }
+    });
+  }
+  function applyBootstrapLayoutClasses() {
+    $('.hero-section, .body-section, .footer-section').addClass('container-fluid p-0');
+    $('[class*="__grid"], [class*="__products"], [class*="__cards"], [class*="__gallery"], [class*="__stories"], [class*="__categories"]').each(function () {
+      var display = window.getComputedStyle(this).display;
+      var $children = $(this).children();
+      if ($children.length > 1 && (display === 'grid' || display === 'flex')) {
+        $(this).addClass('row g-0 mx-0');
+        $children.addClass('col');
+      }
+    });
+  }
+
+  $('.submenu-toggle').on('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var $item = $(this).closest('.hero-main-menu__item');
+    var open = !$item.hasClass('is-open');
+    $('.hero-main-menu__item').removeClass('is-open').find('.submenu-toggle').attr('aria-expanded', 'false').find('i').attr('class', 'fa-solid fa-chevron-down');
+    if (open) {
+      $item.addClass('is-open');
+      $(this).attr('aria-expanded', 'true').find('i').attr('class', 'fa-solid fa-chevron-up');
+    }
+  });
+
+  $(document).on('click', function () {
+    $('.hero-main-menu__item').removeClass('is-open').find('.submenu-toggle').attr('aria-expanded', 'false').find('i').attr('class', 'fa-solid fa-chevron-down');
+  }).on('keydown', function (event) {
+    if (event.key === 'Escape') { $(document).trigger('click'); }
+  });
+
+  var lastStageFourScroll = window.pageYOffset;
+  var stageFourScrollTicking = false;
+  function updateStageFourStickyBar() {
+    var current = window.pageYOffset;
+    var show = current > 320 && current < lastStageFourScroll - 4;
+    var $bar = $('.site-sticky-bar');
+    $bar.toggleClass('is-visible', show).attr('aria-hidden', show ? 'false' : 'true');
+    lastStageFourScroll = current;
+    stageFourScrollTicking = false;
+  }
+  $(window).on('scroll', function () {
+    if (!stageFourScrollTicking) {
+      window.requestAnimationFrame(updateStageFourStickyBar);
+      stageFourScrollTicking = true;
+    }
+  });
+
+  applyBootstrapLayoutClasses();
+  normalizeStageFourPalette();
+  normalizeStageFourTypography();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { normalizeStageFourPalette(); normalizeStageFourTypography(); });
+  }
+  var stageFourResizeTimer;
+  $(window).on('resize', function () {
+    window.clearTimeout(stageFourResizeTimer);
+    stageFourResizeTimer = window.setTimeout(function () { normalizeStageFourPalette(); normalizeStageFourTypography(); }, 50);
+  });
 })(jQuery);

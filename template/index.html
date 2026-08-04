@@ -8,21 +8,33 @@
   <link rel="icon" type="image/jpeg" href="assets/images/hero-editorial.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&family=Bodoni+Moda:opsz,wght@6..96,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="assets/vendor/simplebar/simplebar.min.css">
   <link rel="stylesheet" href="assets/css/main.css?v=5">
 </head>
 <body>
+  <header class="site-sticky-bar" aria-hidden="true">
+    <a class="site-logo" href="#catalogue-one" aria-label="Tendenzze home"><img src="assets/images/hero-editorial.jpg" alt=""><span>TENDENZZE</span></a>
+    <nav class="site-sticky-bar__menu" aria-label="Sticky main menu">
+      <div class="hero-main-menu__item"><a href="#new-arrivals">Shop</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Shop submenu"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="hero-main-menu__submenu"><a href="#new-arrivals">New Arrivals</a><a href="#campaign-collections">Collections</a><a href="#accessory-arrivals">Accessories</a></div></div>
+      <div class="hero-main-menu__item"><a href="#curated-stories">Journal</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Journal submenu"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="hero-main-menu__submenu"><a href="#curated-stories">Stories</a><a href="#inside-newsroom">Newsroom</a><a href="#science-ecology">Responsibility</a></div></div>
+      <a href="#catalogue-panel">Catalogue</a>
+    </nav>
+  </header>
   <main>
     <section class="hero-section hero-section-1" id="catalogue-one" aria-labelledby="catalogue-title">
       <img class="hero-section-1__portrait" src="assets/images/hero-editorial.jpg" alt="Male fashion model in a dark editorial portrait">
       <div class="hero-section-1__shade" aria-hidden="true"></div>
 
       <header class="hero-section-1__topbar">
-        <a class="hero-section-1__brand" href="#catalogue-one" aria-label="Tendenzze home">TENDENZZE<br>TENDENZZE</a>
-        <a class="hero-section-1__nav-link" href="#catalogue-panel">CATALOGUE</a>
+        <a class="hero-section-1__brand site-logo" href="#catalogue-one" aria-label="Tendenzze home"><img src="assets/images/hero-editorial.jpg" alt=""><span>TENDENZZE</span></a>
+        <nav class="hero-main-menu" aria-label="Main menu">
+          <div class="hero-main-menu__item"><a href="#new-arrivals">Shop</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Shop submenu"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="hero-main-menu__submenu"><a href="#new-arrivals">New Arrivals</a><a href="#campaign-collections">Collections</a><a href="#accessory-arrivals">Accessories</a></div></div>
+          <div class="hero-main-menu__item"><a href="#curated-stories">Journal</a><button class="submenu-toggle" type="button" aria-expanded="false" aria-label="Toggle Journal submenu"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button><div class="hero-main-menu__submenu"><a href="#curated-stories">Stories</a><a href="#inside-newsroom">Newsroom</a><a href="#science-ecology">Responsibility</a></div></div>
+          <a class="hero-section-1__nav-link" href="#catalogue-panel">Catalogue</a>
+        </nav>
         <p class="hero-section-1__viewport">1920×960<br>DESKTOP</p>
       </header>
 
@@ -387,7 +399,7 @@
       </div>
       <div class="body-section-12__callout"><span>Checkout<br>page</span><i></i></div>
       <div class="body-section-12__phone body-section-12__phone--order"><div class="body-section-12__notch"></div><small>Order (3)</small><article><img src="assets/images/hero-editorial.jpg" alt="Hoodie order item"><span>Balaclava Hoodie<br>7 900 ₽</span></article><article><img src="assets/images/catalogue-model.jpg" alt="Jeans order item"><span>Baggy Jeans<br>9 000 ₽</span></article><article><img src="assets/images/catalogue-bag.jpg" alt="Sweatshirt order item"><span>Split Sweatshirt<br>9 000 ₽</span></article><strong>Total&nbsp;&nbsp;&nbsp;25 900 ₽</strong></div>
-      <div class="body-section-12__phone body-section-12__phone--checkout"><div class="body-section-12__notch"></div><strong>V</strong><h3>Checkout</h3><form><label>Personal info<input type="text" value="Tendenzze client"></label><label>Contact<input type="email" value="style@example.com"></label><label>Shipping<select><option>Standard delivery</option></select></label><label>Payment<input type="text" value="Card ending 2026"></label><button type="button">Complete order</button></form></div>
+      <div class="body-section-12__phone body-section-12__phone--checkout"><div class="body-section-12__notch"></div><strong>V</strong><h3>Checkout</h3><form><label>Personal info<input type="text" value="Tendenzze client"></label><label>Contact<input type="email" value="style@example.com"></label><label>Shipping<select aria-label="Shipping method"><option>Standard delivery</option></select><i class="fa-solid fa-chevron-down body-section-12__select-icon" aria-hidden="true"></i></label><label>Payment<input type="text" value="Card ending 2026"></label><button type="button">Complete order</button></form></div>
       <article class="body-section-12__featured"><img src="assets/images/catalogue-model.jpg" alt="Ripped shorts black denim"><p>Ripped Shorts Black Denim <strong>8 690 ₽</strong></p></article>
       <p class="visually-hidden body-section-12__status" aria-live="polite"></p>
     </section>
@@ -1768,13 +1780,13 @@
         <address><h2>Contact</h2><a href="mailto:hello@tendenzze.com">hello@tendenzze.com</a><a href="tel:+12125550146">+1 212 555 0146</a><span>New York, NY</span></address>
       </div>
       <p class="footer-section-1__wordmark" aria-label="Tendenzze">Tendenzze</p>
-      <div class="footer-section-1__meta"><small>Copyright © 2026 Tendenzze. All Rights Reserved.</small><small>Designed by Tendenzze Studio</small></div>
+      <div class="footer-section-1__meta"><div><a class="site-logo footer-section-1__logo" href="#catalogue-one" aria-label="Tendenzze home"><img src="assets/images/hero-editorial.jpg" alt=""><span>TENDENZZE</span></a><small>Copyright © 2026 Tendenzze. All Rights Reserved.</small></div><small>Designed by Tendenzze Studio</small></div>
     </div>
   </footer>
   <footer class="footer-section footer-section-2" aria-label="Tendenzze premium directory">
     <div class="footer-section-2__canvas">
       <header>
-        <div><small>Independent fashion house / New York</small><h2>Made to be<br>remembered.</h2></div>
+        <div><a class="site-logo footer-section-2__logo" href="#catalogue-one" aria-label="Tendenzze home"><img src="assets/images/hero-editorial.jpg" alt=""><span>TENDENZZE</span></a><small>Independent fashion house / New York</small><h2>Made to be<br>remembered.</h2></div>
         <form class="footer-section-2__newsletter"><label for="footer-2-email">Private notes, new collections, and studio stories.</label><span><input id="footer-2-email" type="email" placeholder="Email address" required><button type="submit">Join the list<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></span><p class="visually-hidden footer-section-2__status" aria-live="polite"></p></form>
       </header>
       <div class="footer-section-2__directory">
