@@ -411,4 +411,33 @@
     $(this).attr('aria-pressed', String(playing)).attr('aria-label', playing ? 'Pause leather campaign film' : 'Play leather campaign film').toggleClass('is-playing', playing).find('i').attr('class', playing ? 'fa-solid fa-pause' : 'fa-solid fa-play');
     $('.body-section-76__status').text(playing ? 'Campaign film playing.' : 'Campaign film paused.');
   });
+  $('.body-section-80__arrow').on('click', function () {
+    var $section = $('.body-section-80');
+    var $cards = $section.find('.body-section-80__cards');
+    var current = Number($section.attr('data-slide')) || 1;
+    if ($(this).hasClass('body-section-80__arrow--next')) {
+      $cards.children().first().appendTo($cards);
+      current = current === 4 ? 1 : current + 1;
+    } else {
+      $cards.children().last().prependTo($cards);
+      current = current === 1 ? 4 : current - 1;
+    }
+    $section.attr('data-slide', String(current));
+    $section.find('.body-section-80__counter').text(String(current).padStart(2, '0') + ' / 04');
+    $section.find('.body-section-80__status').text('Featured collection ' + current + ' selected.');
+  });
+  $('.body-section-81__ticker button').on('click', function () {
+    var $section = $('.body-section-81');
+    var story = Number($section.attr('data-story')) + ($(this).data('direction') === 'next' ? 1 : -1);
+    if (story < 1) { story = 25; }
+    if (story > 25) { story = 1; }
+    $section.attr('data-story', String(story)).find('.body-section-81__issue').text(String(story).padStart(2, '0'));
+    $section.find('.body-section-81__status').text('Campaign story ' + story + ' selected.');
+  });
+  $('.body-section-82__story > button').on('click', function () {
+    var number = $(this).text();
+    $('.body-section-82__story > button').attr('aria-pressed', 'false');
+    $(this).attr('aria-pressed', 'true');
+    $('.body-section-82__status').text('Ethos story ' + Number(number) + ' selected.');
+  });
 })(jQuery);
