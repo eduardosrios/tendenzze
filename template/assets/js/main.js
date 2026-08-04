@@ -505,4 +505,12 @@
     $(this).attr('aria-expanded', 'true').find('i').attr('class', 'fa-solid fa-minus');
     $('.body-section-106__status').text($(this).find('strong').text() + ' expanded.');
   });
+  $('.body-section-109 nav button').on('click', function () {
+    $('.body-section-109 nav button').removeClass('is-active');
+    $(this).addClass('is-active');
+    $('.body-section-109__status').text($(this).text() + ' collection selected.');
+  });
+  $('.body-section-109__products figure button').on('click', function () {
+    $('.body-section-109__status').text('Olive hoodie added to cart.');
+  });
 })(jQuery);
