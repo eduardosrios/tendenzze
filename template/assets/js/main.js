@@ -513,4 +513,19 @@
   $('.body-section-109__products figure button').on('click', function () {
     $('.body-section-109__status').text('Olive hoodie added to cart.');
   });
+  $('.body-section-116 header button').on('click', function () {
+    var $items = $('.body-section-116__categories');
+    if ($(this).data('direction') === 'next') { $items.children().first().appendTo($items); } else { $items.children().last().prependTo($items); }
+    $('.body-section-116__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' product category selected.');
+  });
+  var section119Seconds = 52;
+  window.section119Timer = window.setInterval(function () {
+    section119Seconds = section119Seconds === 0 ? 59 : section119Seconds - 1;
+    $('.body-section-119__timer [data-unit="seconds"]').text(String(section119Seconds).padStart(2, '0'));
+  }, 1000);
+  $('.body-section-120 header button').on('click', function () {
+    var $products = $('.body-section-120__products');
+    if ($(this).data('direction') === 'next') { $products.children().first().appendTo($products); } else { $products.children().last().prependTo($products); }
+    $('.body-section-120__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' accessories selected.');
+  });
 })(jQuery);
