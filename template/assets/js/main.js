@@ -353,4 +353,57 @@
     var valid = this.checkValidity();
     $form.toggleClass('is-valid', valid).toggleClass('is-invalid', !valid);
     $('.body-section-60__status').text(valid ? 'Thank you for subscribing.' : 'Enter a valid email address.');
-  });})(jQuery);
+  });
+  $('.body-section-62__drag').on('click', function () {
+    var $cards = $('.body-section-62__cards');
+    $cards.children('a').first().appendTo($cards);
+    $('.body-section-62__status').text('Featured collection rotated.');
+  });
+  $('.body-section-63__categories button').on('click', function () {
+    $(this).addClass('is-active').siblings().removeClass('is-active');
+    $('.body-section-63__status').text($(this).data('category') + ' selected.');
+  });  $('.body-section-65__heart').on('click', function () {
+    var saved = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(saved)).toggleClass('is-active', saved).find('i').attr('class', saved ? 'fa-solid fa-heart' : 'fa-regular fa-heart');
+    $('.body-section-65__status').text(saved ? 'Product saved.' : 'Product removed from saved items.');
+  });
+  $('.body-section-66__items article > button').on('click', function () {
+    $(this).closest('article').remove();
+    var total = 0;
+    $('.body-section-66__items article').each(function () { total += Number($(this).data('price')); });
+    var formatted = total.toLocaleString('en-US').replace(/,/g, ' ') + ' ₽';
+    $('.body-section-66__subtotal, .body-section-66__total').text(formatted);
+    $('.body-section-66__cart > h2').text('Order (' + $('.body-section-66__items article').length + ')');
+    $('.body-section-66__status').text('Cart updated.');
+  });
+  $('.body-section-67__sizes button').on('click', function () {
+    $(this).addClass('is-active').attr('aria-pressed', 'true').siblings().removeClass('is-active').attr('aria-pressed', 'false');
+    $('.body-section-67__status').text('Size ' + $(this).text() + ' selected.');
+  });
+  $('.body-section-67__add').on('click', function () {
+    var added = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(added)).toggleClass('is-added', added).html('<i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> ' + (added ? 'Added to cart' : 'Add to cart'));
+    $('.body-section-67__status').text(added ? 'Fanta Pant added to cart.' : 'Fanta Pant removed from cart.');
+  });
+  $('.body-section-67__arrows button').on('click', function () {
+    var $grid = $('.body-section-67__grid');
+    if ($(this).data('direction') === 'next') { $grid.children().first().appendTo($grid); } else { $grid.children().last().prependTo($grid); }
+    $('.body-section-67__status').text('Product order updated.');
+  });
+  $('.body-section-70__item > button').on('click', function () {
+    var $item = $(this).closest('.body-section-70__item');
+    $('.body-section-70__item').removeClass('is-open').find('> button').attr('aria-expanded', 'false');
+    $item.addClass('is-open');
+    $(this).attr('aria-expanded', 'true');
+    $('.body-section-70__status').text($(this).find('h2, h3').text() + ' expanded.');
+  });
+  $('.body-section-72__tabs button').on('click', function () {
+    $(this).addClass('is-active').attr('aria-selected', 'true').siblings().removeClass('is-active').attr('aria-selected', 'false');
+    $('.body-section-72__status').text($(this).text() + ' selected.');
+  });
+  $('.body-section-72__phone-grid article p button').on('click', function () {
+    var added = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(added)).toggleClass('is-added', added);
+    $('.body-section-72__status').text(added ? 'Product added to bag.' : 'Product removed from bag.');
+  });
+})(jQuery);
