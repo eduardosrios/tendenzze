@@ -406,4 +406,9 @@
     $(this).attr('aria-pressed', String(added)).toggleClass('is-added', added);
     $('.body-section-72__status').text(added ? 'Product added to bag.' : 'Product removed from bag.');
   });
+  $('.body-section-76__canvas > button').on('click', function () {
+    var playing = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(playing)).attr('aria-label', playing ? 'Pause leather campaign film' : 'Play leather campaign film').toggleClass('is-playing', playing).find('i').attr('class', playing ? 'fa-solid fa-pause' : 'fa-solid fa-play');
+    $('.body-section-76__status').text(playing ? 'Campaign film playing.' : 'Campaign film paused.');
+  });
 })(jQuery);
