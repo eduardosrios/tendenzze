@@ -545,4 +545,10 @@
     $(this).attr('aria-pressed', String(playing)).find('i').attr('class', playing ? 'fa-solid fa-pause' : 'fa-solid fa-play');
     $('.body-section-126__status').text(playing ? 'Presentation playing.' : 'Presentation paused.');
   });
+  $('.body-section-127__controls button').on('click', function () {
+    var $stones = $('.body-section-127__stones');
+    if ($(this).data('direction') === 'next') { $stones.children().first().appendTo($stones); } else { $stones.children().last().prependTo($stones); }
+    $stones.children().removeClass('is-active').eq(2).addClass('is-active');
+    $('.body-section-127__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' jewelry cut selected.');
+  });
 })(jQuery);
