@@ -445,4 +445,34 @@
     $(this).attr('aria-pressed', String(saved)).find('i').attr('class', saved ? 'fa-solid fa-heart' : 'fa-regular fa-heart');
     $('.body-section-86__status').text($(this).attr('aria-label').replace('Save ', '') + (saved ? ' saved.' : ' removed from saved items.'));
   });
+  $('.body-section-91__stories article > button').on('click', function () {
+    var $article = $(this).closest('article');
+    $('.body-section-91__stories article').removeClass('is-active').find('> button').attr('aria-expanded', 'false');
+    $article.addClass('is-active');
+    $(this).attr('aria-expanded', 'true');
+    $('.body-section-91__status').text($(this).find('strong').text() + ' selected.');
+  });
+  $('.body-section-92__accordions button').on('click', function () {
+    var expanded = $(this).attr('aria-expanded') !== 'true';
+    $('.body-section-92__accordions button').attr('aria-expanded', 'false');
+    $(this).attr('aria-expanded', String(expanded));
+    $('.body-section-92__status').text($(this).text().trim() + (expanded ? ' expanded.' : ' collapsed.'));
+  });
+  $('.body-section-92__directory form').on('submit', function (event) {
+    event.preventDefault();
+    var valid = this.checkValidity();
+    $('.body-section-92__status').text(valid ? 'Thank you for subscribing.' : 'Enter a valid email address.');
+  });
+  $('.body-section-93__canvas figure button').on('click', function () {
+    var playing = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(playing)).attr('aria-label', playing ? 'Pause material campaign film' : 'Play material campaign film').find('i').attr('class', playing ? 'fa-solid fa-pause' : 'fa-solid fa-play');
+    $('.body-section-93__status').text(playing ? 'Material campaign film playing.' : 'Material campaign film paused.');
+  });
+  $('.body-section-96__list button').on('click', function () {
+    var $button = $(this);
+    $('.body-section-96__list button').removeClass('is-active').removeAttr('aria-pressed');
+    $button.addClass('is-active').attr('aria-pressed', 'true');
+    $('.body-section-96__canvas > figure img').attr('src', $button.data('image')).attr('alt', $button.find('strong').text() + ' category preview');
+    $('.body-section-96__status').text($button.find('strong').text() + ' selected.');
+  });
 })(jQuery);
