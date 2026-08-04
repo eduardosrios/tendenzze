@@ -489,4 +489,20 @@
     var valid = this.checkValidity();
     $('.body-section-99__status').text(valid ? 'Thank you for joining.' : 'Enter a valid email address.');
   });
+  $('.body-section-103__toolbar button').on('click', function () {
+    $(this).toggleClass('is-active');
+    $('.body-section-103__status').text($(this).text().trim() + ' filter toggled.');
+  });
+  $('.body-section-104__grid button').on('click', function () {
+    var added = !$(this).hasClass('is-added');
+    $(this).toggleClass('is-added', added).text(added ? 'Added' : 'Add to cart');
+    $('.body-section-104__status').text($(this).siblings('h3').text() + (added ? ' added to cart.' : ' removed from cart.'));
+  });
+  $('.body-section-106__list button').on('click', function () {
+    var $article = $(this).closest('article');
+    $('.body-section-106__list article').removeClass('is-open').find('button').attr('aria-expanded', 'false').find('i').attr('class', 'fa-solid fa-plus');
+    $article.addClass('is-open');
+    $(this).attr('aria-expanded', 'true').find('i').attr('class', 'fa-solid fa-minus');
+    $('.body-section-106__status').text($(this).find('strong').text() + ' expanded.');
+  });
 })(jQuery);
