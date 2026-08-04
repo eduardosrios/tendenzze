@@ -528,4 +528,21 @@
     if ($(this).data('direction') === 'next') { $products.children().first().appendTo($products); } else { $products.children().last().prependTo($products); }
     $('.body-section-120__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' accessories selected.');
   });
+  $('.body-section-122__controls button').on('click', function () {
+    var $reviews = $('.body-section-122__reviews');
+    if ($(this).data('direction') === 'next') { $reviews.children().first().appendTo($reviews); } else { $reviews.children().last().prependTo($reviews); }
+    $('.body-section-122__status').text(($(this).data('direction') === 'next' ? 'Next' : 'Previous') + ' reviews selected.');
+  });
+  $('.body-section-123__list button').on('click', function () {
+    var $article = $(this).closest('article');
+    $('.body-section-123__list article').removeClass('is-open').find('button').attr('aria-expanded', 'false').find('i').attr('class', 'fa-solid fa-plus');
+    $article.addClass('is-open');
+    $(this).attr('aria-expanded', 'true').find('i').attr('class', 'fa-solid fa-minus');
+    $('.body-section-123__status').text($(this).find('strong').text() + ' expanded.');
+  });
+  $('.body-section-126__watch').on('click', function () {
+    var playing = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(playing)).find('i').attr('class', playing ? 'fa-solid fa-pause' : 'fa-solid fa-play');
+    $('.body-section-126__status').text(playing ? 'Presentation playing.' : 'Presentation paused.');
+  });
 })(jQuery);
