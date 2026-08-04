@@ -475,4 +475,18 @@
     $('.body-section-96__canvas > figure img').attr('src', $button.data('image')).attr('alt', $button.find('strong').text() + ' category preview');
     $('.body-section-96__status').text($button.find('strong').text() + ' selected.');
   });
+  $('.body-section-97__drag').on('click', function () {
+    var $rail = $('.body-section-97__rail');
+    $rail.children().first().appendTo($rail);
+    $('.body-section-97__status').text('Next campaign collection selected.');
+  });
+  $('.body-section-99 footer nav button').on('click', function () {
+    var enabled = $(this).attr('aria-pressed') !== 'true';
+    $(this).attr('aria-pressed', String(enabled)).find('i').attr('class', enabled ? 'fa-solid fa-toggle-on' : 'fa-solid fa-toggle-off');
+    $('.body-section-99__status').text('Cookie settings ' + (enabled ? 'enabled.' : 'disabled.'));
+  });  $('.body-section-99 footer form').on('submit', function (event) {
+    event.preventDefault();
+    var valid = this.checkValidity();
+    $('.body-section-99__status').text(valid ? 'Thank you for joining.' : 'Enter a valid email address.');
+  });
 })(jQuery);
